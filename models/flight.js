@@ -2,6 +2,17 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+const destinationShema = new Schema ({
+  airport: {
+    type: String,
+    enum: ['AUS','DFW','DEN','LAX','SAN']
+  },
+  arrival: {
+    type: Date,
+    default: null,
+  }
+})
+
 const flightSchema = new Schema({
     airline: {
         type:  String,
@@ -25,6 +36,7 @@ const flightSchema = new Schema({
           return oneYearFromNow;
         },
       },
+    destinations: [destinationShema],
     });
 
     flightSchema.statics.getAll = function() {

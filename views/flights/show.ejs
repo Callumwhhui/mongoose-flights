@@ -1,0 +1,52 @@
+<%- include('../partials/header') %>
+<br>
+<h2>Flight Details</h2>
+<section id="show-page">
+    <div>Airline: <%= flight.airline %></div>
+
+    <div>Flight Number: <%= flight.flightNo %></div>
+    
+    <div>Airport: <%= flight.airport %></div>
+    
+    <div>Date: <%= flight.departs.toLocaleDateString() %></div>
+    
+
+    
+
+    <% if (flight.destinations.length > 0) { %>
+        <h2>Destinations:</h2>
+        <ul>
+          <% flight.destinations.forEach(function(destination) { %>
+            <li>Airport: <%= destination.airport %></li>
+            <li>Arrival: <%= destination.arrival ? destination.arrival.toLocaleDateString() : 'Not specified' %></li>
+          <% }); %>
+        </ul>
+      <% } else { %>
+        <h2>No destinations added.</h2>
+      <% } %>
+</section>
+<br><br>
+<h2>Add Destination and Date of Flight</h2>
+<form method="POST" action="/flights/<%= flight._id %>/destinations">
+<label >Destination</label>
+<select name="airport" id="">
+    <option value="AUS">AUS</option>
+    <option value="DFW">DFW</option>
+    <option value="DEN">DEN</option>
+    <option value="LAX">LAX</option>
+    <option value="SAN">SAN</option>
+</select><br>
+<label>Arrival:
+  <input type="datetime-local" name="arrival">
+</label><br>
+<button type="submit">ADD Arrival</button>
+</form>
+<br>
+<h2>ADD New Ticket:</h2>
+<br>
+<a href="/tickets/new">new ticket</a>
+
+
+
+
+<%- include('../partials/footer') %>
