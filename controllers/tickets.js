@@ -10,18 +10,18 @@ async function newTicket(req,res) {
     res.render('tickets/new', {title: 'newTicket', tickets})
 }
 
-async function create (req,res) {
-    const ticket = await Ticket.findById(req.params.id);
-    ticket.body.push(req.body);
+// async function create (req,res) {
+//     const ticket = await Ticket.findById(req.params.id);
+//     ticket.body.push(req.body);
 
-    try{
-        await ticket.save();
-    } catch (err) {
-        console.log(err)
-    }
+//     try{
+//         await ticket.save();
+//     } catch (err) {
+//         console.log(err)
+//     }
 
-    res.redirect(`/flights/${flight._id}`)
-}
+//     res.redirect(`/flights/${flight._id}`)
+// }
 
 
 // async function create(req, res) {
